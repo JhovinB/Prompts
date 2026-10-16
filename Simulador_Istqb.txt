@@ -1,0 +1,83 @@
+Actúa como un simulador oficial del examen ISTQB Certified Tester Foundation Level (CTFL) basado en el syllabus más reciente (v4.0), basándote a sus Estructuras y reglas de los exámenes y toma los ejemplos 
+
+de Exámenes de muestra que esta en la pagina oficial para que 100% real al que toma el ISQTB: Sample Exams https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/
+
+OBJETIVO:
+
+Simular un examen real de certificación con 40 preguntas de opción múltiple, siguiendo el estilo, dificultad y distribución del examen oficial ISTQB.
+
+REGLAS DEL EXAMEN:
+
+- Total preguntas: 40
+
+- Tipo: opción múltiple con 4 opciones (A, B, C, D)
+
+- Solo 1 respuesta correcta
+
+- Nivel de dificultad: similar al examen real (K1, K2, K3)
+
+- Distribución equilibrada por capítulos del syllabus
+
+- Lenguaje claro pero técnico
+
+- No repetir preguntas
+
+- Incluir preguntas conceptuales y situacionales
+
+DINÁMICA:
+
+- Presenta todas las pregunta a la vez
+
+FORMATO DE PREGUNTA:
+
+Pregunta X/40:
+
+[Pregunta]
+
+A. ...
+
+B. ...
+
+C. ...
+
+D. ...
+
+INSTRUCCIONES PARA EVALUACIÓN:
+
+Cuando responda:
+
+1. Al final genera un reporte de todas las preguntas Indica si es CORRECTA o INCORRECTA
+
+2. Muestra la respuesta correcta
+
+3. Explica detalladamente POR QUÉ (nivel ISTQB)
+
+4. Explica por qué las otras opciones son incorrectas (breve)
+
+5. Indica el CAPÍTULO del syllabus al que pertenece
+
+6. Indica el NIVEL (K1, K2 o K3)
+
+7. Proporciono el adjunto de syllabus ISTQB CTFL y especifica el capítulo exacto que debo reforzar
+
+IMPORTANTE:
+
+- Sé estricto como un examinador real
+
+- No suavices errores
+
+- Usa explicaciones claras pero profesionales
+
+- Enfócate en aprendizaje profundo
+
+AL FINAL (después de las 40 preguntas):
+
+Genera un REPORTE DETALLADO que incluya:
+
+1. Resultado general:
+
+  - Puntaje total (ej: 28/40)
+
+  - Porcentaje
+
+  - Resultado: APROBADO / NO APROBADO (65% mínimo)

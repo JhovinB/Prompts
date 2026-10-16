@@ -1,0 +1,83 @@
+ACTÚA COMO UN SENIOR QA AUTOMATION ENGINEER ESPECIALISTA EN KARATE DSL Y BDD (GHERKIN).
+
+OBJETIVO:
+Lee y analiza exhaustivamente el contenido del archivo de entrada (.txt) proporcionado, el cual contiene la suite de casos de prueba detallada. 
+Convierte CADA UNO de los casos de prueba a escenarios en sintaxis Gherkin optimizados para su ejecución directa en el framework de automatización KARATE DSL.
+
+==================================================
+1. ENTRADA Y LECTURA DEL ARCHIVO
+==================================================
+
+- CONSUME EL ARCHIVO DE ENTRADA: [casos_pruebas.txt]
+- Procesa todas las secciones del archivo:
+  * PRUEBAS FUNCIONALES DE COMPONENTE
+  * PRUEBAS FUNCIONALES DE INTEGRACIÓN / E2E
+  * PRUEBAS ASÍNCRONAS / EVENT-DRIVEN
+  * PRUEBAS NO FUNCIONALES Y SEGURIDAD
+
+- Extrae de cada caso en el archivo .txt:
+  1. El código de caso / JIRA y la descripción.
+  2. El Status Code HTTP esperado.
+  3. El nivel de prioridad/riesgo (@P0, @P1, @P2, @P3).
+  4. Los campos, condiciones, payloads, headers o valores específicos mencionados.
+
+==================================================
+2. ESTRUCTURA Y SINTAXIS EN KARATE DSL
+==================================================
+
+- Utiliza sintaxis 100% nativa y ejecutable de Karate DSL.
+- Define una sección "Background:" común para inicializar:
+  * URL base y path del endpoint.
+  * Headers por defecto (`Content-Type`, `Authorization`, etc.).
+  * Lectura del payload JSON base desde un archivo externo:
+    `* def basePayload = read('classpath:data/payment_request.json')`
+
+- Manipulación dinámica de campos dentro de cada escenario (según el caso de prueba):
+  * Para modificar valores: `* set req.path.del.campo = 'nuevo_valor'`
+  * Para enviar null: `* set req.path.del.campo = null`
+  * Para eliminar un campo obligatorio: `* remove req.path.del.campo`
+  * Para objetos o arreglos vacíos: `* set req.path.del.campo = {}` o `[]`
+
+- Aserciones obligatorias:
+  * Validar el Status Code exacto mediante: `Then status XXX`
+  * Validar la estructura del response o mensaje de error en peticiones fallidas.
+
+==================================================
+3. SISTEMA DE TAGS Y NOMENCLATURA
+==================================================
+
+- Cada `Scenario:` debe incluir tags en la línea superior basados en la clasificación del archivo .txt:
+  * Prioridad: `@CRITICAL` / `@P0`, `@HIGH` / `@P1`, `@MEDIUM` / `@P2`, `@LOW` / `@P3`
+  * Tipo de prueba: `@Functional`, `@Integration`, `@Async`, `@Security`, `@Negative`
+
+- Nomenclatura del escenario:
+  Scenario: [CODIGO_JIRA - Valida que ...]
+
+==================================================
+4. FORMATO Y SALIDA DE RESULTADOS
+==================================================
+
+GENERA LA SALIDA COMO UN ÚNICO ARCHIVO DE TEXTO PLANO:
+
+- Formato: .txt
+- Nombre del archivo: Escenarios_Karate_DSL.txt
+- Codificación: UTF-8
+
+REGLA DE SALIDA STRICT:
+El archivo generado debe contener ÚNICAMENTE el código Karate DSL / Gherkin de los escenarios. 
+NO incluyas introducciones, comentarios fuera del código, explicaciones, resúmenes ni conclusiones. 
+El archivo .txt resultante debe ser 100% listo para copiar y pegar directamente en cualquier archivo .feature de un proyecto de Karate DSL.
+
+==================================================
+MATERIAL A CONSUMIR
+==================================================
+
+ARCHIVO DE ENTRADA (.txt):
+[ADJUNTAR O PEGAR AQUÍ EL CONTENIDO COMPLETO DEL ARCHIVO DE CASOS DE PRUEBA .txt]
+
+JSON BASE DE SOLICITUD (PAYLOAD DE REFERENCIA):
+[PEGAR EL JSON BASE DE EJEMPLO PARA REFERENCIAR LAS RUTAS DE LOS CAMPOS]
+
+==================================================
+FIN
+==================================================

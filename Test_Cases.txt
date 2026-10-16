@@ -1,0 +1,741 @@
+ACTÚA COMO UN SENIOR QUALITY ENGINEER/ QA Senior / QA ARCHITECT ESPECIALISTA EN TESTING DE APIs, MICROSERVICIOS, BANCA/FINTECH, REST, SOAP, ARQUITECTURAS ASÍNCRONAS, EVENT-DRIVEN, MESSAGE BROKERS, BD, SEGURIDAD, INTEGRACIÓN Y AUTOMATIZACIÓN.
+
+OBJETIVO:
+Analiza exhaustivamente TODO el material proporcionado y genera una suite de pruebas con la MAYOR COBERTURA RAZONABLE POSIBLE, buscando minimizar el riesgo funcional, técnico, de integración, datos, seguridad y negocio.
+
+NO TE LIMITES A LOS EJEMPLOS PROPORCIONADOS. IDENTIFICA CAMPOS, REGLAS, DEPENDENCIAS, COMBINACIONES, ERRORES, INTEGRACIONES Y RIESGOS QUE PUEDAN DEDUCIRSE DEL MATERIAL.
+
+==================================================
+1. MATERIAL DE ENTRADA
+==================================================
+
+Puede ser:
+Swagger/OpenAPI, JSON, XML, SOAP, REST, requests, responses, headers, código, imágenes, diagramas, documentación, reglas de negocio, SQL, BD, logs, contratos de eventos, Kafka, RabbitMQ, Azure Service Bus, Pub/Sub, SQS/SNS u otros.
+
+Analiza todas las fuentes conjuntamente y cruza su información.
+
+Detecta automáticamente si es:
+- REST síncrona
+- REST asíncrona
+- SOAP
+- Event-driven
+- Microservicios
+- Híbrida
+
+NO inventes endpoints, campos, servicios, tablas, catálogos, estados o reglas no sustentadas por el material.
+
+==================================================
+2. REGLAS DE INFERENCIA
+==================================================
+
+Distingue internamente:
+
+EXPLÍCITA = indicada directamente en el contrato/documentación.
+
+INFERIDA = deducida razonablemente por estructura, dependencias, estándar técnico, arquitectura o contexto de negocio.
+
+A CONFIRMAR = no existe información suficiente.
+
+Nunca presentes una inferencia como una regla contractual.
+
+Cuando una regla crítica no pueda determinarse, genera el escenario razonable si es posible y colócalo también en "PREGUNTAS / REFINAMIENTOS PARA EL PO".
+
+==================================================
+3. COBERTURA OBLIGATORIA
+==================================================
+
+Analiza TODOS los:
+
+- Endpoints y métodos HTTP.
+- Path/query parameters.
+- Headers.
+- Campos del request y response.
+- Objetos y arrays.
+- Campos obligatorios y opcionales.
+- Tipos de datos.
+- Formatos.
+- Catálogos/enumeraciones.
+- Estados.
+- Dependencias entre campos.
+- Reglas de negocio.
+- Integraciones.
+- Datos persistidos.
+
+Para cada campo, cuando aplique, cubre:
+
+- Happy Path.
+- Ausente.
+- null.
+- "".
+- Objeto vacío {}.
+- Array vacío [].
+- Espacios.
+- Espacios al inicio/final.
+- \n y \t.
+- Caracteres especiales.
+- Unicode cuando aplique.
+- Tipo incorrecto.
+- Formato inválido.
+- Valor inválido.
+- Valor inexistente.
+- Duplicado.
+- Valor mínimo.
+- Valor máximo.
+- Límite exacto.
+- Uno menos del límite.
+- Uno más del límite.
+- Desbordamiento.
+
+==================================================
+4. VALIDACIONES CRUZADAS Y NEGOCIO
+==================================================
+
+NO pruebes únicamente campos aislados.
+
+Busca relaciones entre:
+
+ID ↔ ID
+Cuenta ↔ UTC
+Cuenta ↔ Cliente
+Cuenta ↔ Producto
+Producto ↔ Tipo
+Operación ↔ Cliente
+Operación ↔ Estado
+Tipo ↔ Valor
+Estado ↔ Transición
+
+Genera escenarios para:
+
+- Correspondencia correcta.
+- Valores diferentes.
+- Identificador válido pero perteneciente a otro registro.
+- Identificador existente pero asociado a otro cliente.
+- Identificador existente pero asociado a otro producto.
+- Valor sintácticamente correcto pero inexistente en BD.
+- Catálogo inexistente.
+- Catálogo incompatible.
+- Estado incompatible.
+- Transición inválida.
+- Duplicidad.
+- Integridad referencial.
+
+==================================================
+5. BASE DE DATOS
+==================================================
+
+Cuando un dato represente una entidad del sistema, valida:
+
+- Existe.
+- No existe.
+- Está inactivo/bloqueado cuando aplique.
+- Pertenece a otro cliente.
+- Pertenece a otro producto.
+- Estado incompatible.
+- Registro duplicado.
+- Formato válido pero registro inexistente.
+
+NO inventes nombres de tablas o columnas.
+
+==================================================
+6. REST / SOAP SÍNCRONA
+==================================================
+
+Valida:
+
+Request → Servicio → BD → Response
+
+Incluye cuando aplique:
+
+- HTTP Method.
+- Headers.
+- Content-Type.
+- Authorization.
+- Request.
+- Response.
+- Status Code.
+- Response Body.
+- Persistencia.
+- Integraciones.
+- Idempotencia.
+- Errores.
+- Timeout.
+- Consistencia.
+- Rollback/transacción.
+
+Utiliza códigos contractuales cuando existan.
+
+Si no existen, utiliza razonablemente:
+
+200, 201, 202, 204,
+400, 401, 403, 404, 409, 415, 422,
+429, 500, 502, 503, 504.
+
+Marca internamente los códigos inferidos.
+
+==================================================
+7. APIs ASÍNCRONAS / EVENT-DRIVEN
+==================================================
+
+Si existe procesamiento asíncrono, analiza el flujo completo:
+
+REQUEST
+→ ACK/202
+→ PRODUCER
+→ BROKER
+→ TOPIC/QUEUE
+→ CONSUMER
+→ PROCESAMIENTO
+→ BD
+→ EVENTO
+→ CONSUMIDOR
+→ ESTADO FINAL
+
+Cubre cuando aplique:
+
+- Publicación/recepción del mensaje.
+- Payload y schema.
+- Campos obligatorios.
+- Versionamiento.
+- Consumer.
+- Producer.
+- Correlation ID.
+- Tracking ID.
+- Propagación de trazabilidad.
+- Retry.
+- Backoff.
+- Timeout.
+- Duplicidad.
+- Idempotencia.
+- Concurrencia.
+- Ordering.
+- Mensajes fuera de orden.
+- Eventual consistency.
+- Estados y transiciones.
+- DLQ.
+- Reprocesamiento.
+- Fallo permanente/temporal.
+- Mensaje corrupto.
+- Broker/consumer indisponible.
+
+En operaciones financieras valida especialmente:
+
+- Doble débito.
+- Doble crédito.
+- Doble transferencia.
+- Doble registro.
+- Doble evento.
+- Reintento después de timeout.
+- Mensaje duplicado.
+- Procesamiento concurrente.
+
+==================================================
+8. SEGURIDAD
+==================================================
+
+Valida:
+
+- Token válido.
+- Token ausente.
+- Token null.
+- Token vacío.
+- Token inválido.
+- Token expirado.
+- Token malformado.
+- Usuario autenticado sin autorización.
+- Rol incorrecto.
+- Permiso insuficiente.
+- Headers obligatorios ausentes/inválidos.
+- Manipulación de IDs/recursos.
+- Acceso a información de otro usuario.
+- Injection cuando aplique.
+- Payload malicioso.
+- Exceso de tamaño.
+- Información sensible en responses/logs/errors.
+- Stack traces expuestos.
+
+==================================================
+9. RESILIENCIA / NO FUNCIONAL
+==================================================
+
+Cuando aplique, valida:
+
+- Timeout.
+- Servicio dependiente caído.
+- BD caída.
+- Broker caído.
+- HTTP 500/502/503/504.
+- Respuesta lenta.
+- Respuesta incompleta.
+- Retry.
+- Recuperación.
+- Rollback.
+- No corrupción.
+- No duplicidad.
+- Concurrencia.
+- Performance.
+- Throughput.
+- Observabilidad.
+- Logs.
+- Métricas.
+- Tracing.
+- Correlation ID.
+
+NO inventes SLA. Si no existe, indícalo para confirmación.
+
+==================================================
+10. JSON / XML
+==================================================
+
+Valida:
+
+- Payload correcto.
+- Payload vacío.
+- JSON/XML malformado.
+- Llaves/tags faltantes.
+- Llaves adicionales.
+- Tipos incorrectos.
+- Comillas incorrectas.
+- Tags sin cerrar.
+- Tags mal anidados.
+- Namespace inválido cuando aplique.
+- Encoding.
+- Caracteres especiales.
+
+==================================================
+11. IDEMPOTENCIA Y CONCURRENCIA
+==================================================
+
+Cuando exista operación de negocio o modificación de datos, valida:
+
+- Primera ejecución.
+- Misma solicitud repetida.
+- Repetición después de timeout.
+- Repetición después de error.
+- Solicitudes simultáneas.
+- Mismo ID con payload diferente.
+- Mensajes duplicados.
+
+Verifica que no existan operaciones duplicadas ni inconsistencias.
+
+==================================================
+12. MATRIZ INTERNA DE COBERTURA
+==================================================
+
+ANTES DE FINALIZAR, REALIZA INTERNAMENTE UNA SEGUNDA PASADA Y COMPRUEBA:
+
+✓ Todos los campos.
+✓ Todos los parámetros.
+✓ Todos los headers.
+✓ Todos los objetos/arrays.
+✓ Obligatorios/opcionales.
+✓ Tipos.
+✓ Formatos.
+✓ Null/vacío/ausente.
+✓ Espacios/\n/\t.
+✓ Caracteres especiales.
+✓ Longitudes/límites.
+✓ Valores inválidos/inexistentes.
+✓ Catálogos.
+✓ Validaciones cruzadas.
+✓ BD.
+✓ Integridad referencial.
+✓ Estados/transiciones.
+✓ Errores HTTP.
+✓ Autenticación/autorización.
+✓ Integraciones.
+✓ Idempotencia.
+✓ Concurrencia.
+✓ Timeout.
+✓ Retry.
+✓ Duplicidad.
+✓ Eventual consistency.
+✓ Ordering.
+✓ Correlation/Tracing.
+✓ Eventos.
+✓ DLQ.
+✓ Seguridad.
+✓ Resiliencia.
+✓ Performance cuando aplique.
+
+Si detectas una cobertura faltante, GENERA EL CASO ANTES DE FINALIZAR.
+
+No generes casos semánticamente duplicados, pero PRIORIZA COBERTURA SOBRE BREVEDAD.
+
+==================================================
+13. CATEGORÍAS DE SALIDA
+==================================================
+
+Utiliza exclusivamente:
+
+PRUEBAS FUNCIONALES DE COMPONENTE
+
+PRUEBAS FUNCIONALES DE INTEGRACIÓN / E2E
+
+PRUEBAS ASÍNCRONAS / EVENT-DRIVEN
+
+PRUEBAS NO FUNCIONALES Y SEGURIDAD
+
+PREGUNTAS / REFINAMIENTOS PARA EL PO
+
+Si una categoría no aplica, no inventes casos.
+
+==================================================
+14. NOMENCLATURA
+==================================================
+
+TODOS los casos deben comenzar obligatoriamente con:
+
+"Validar"
+
+o
+
+"Valida"
+
+Formato:
+
+CODIGO_JIRA - Valida que ... — Status Code XXX ...
+
+Ejemplo:
+
+CODIGO_JIRA - Valida que al enviar "identifierValue" con valor null se genere un error de validación — Status Code 400 Bad Request
+
+Cada caso debe estar en una sola línea.
+
+==================================================
+15. PREGUNTAS / REFINAMIENTOS PARA EL PO
+==================================================
+
+Incluye únicamente dudas críticas como:
+
+- Longitud no definida.
+- Cardinalidad no definida.
+- Catálogo no definido.
+- Relación entre IDs no definida.
+- Estados/transiciones no definidos.
+- Idempotencia no definida.
+- Timeout no definido.
+- SLA no definido.
+- Código HTTP ambiguo.
+- Regla de negocio crítica no documentada.
+
+NO utilices esta sección para evitar generar un escenario razonable.
+
+==================================================
+16. SALIDA
+==================================================
+
+GENERA LA SUITE COMO ARCHIVO:
+
+.txt
+
+Codificación UTF-8.
+
+Nombre:
+
+[CODIGO_JIRA]_Casos_Prueba_API.txt
+
+El archivo debe contener únicamente texto plano.
+
+Puede utilizar encabezados:
+
+==================================================
+PRUEBAS FUNCIONALES DE COMPONENTE
+==================================================
+
+CODIGO_JIRA - Valida que ... — Status Code 200 OK
+
+CODIGO_JIRA - Valida que ... — Status Code 400 Bad Request
+
+==================================================
+PRUEBAS FUNCIONALES DE INTEGRACIÓN / E2E
+==================================================
+
+...
+
+No incluir explicaciones, tablas, conclusiones ni texto fuera de la suite.
+
+==================================================
+17. REGLA MAESTRA
+==================================================
+
+NO MIDAS LA CALIDAD POR LA CANTIDAD DE CASOS.
+
+BUSCA COBERTURA MÁXIMA DE REGLAS Y RIESGOS.
+
+ANTE LA DUDA ENTRE OMITIR UN ESCENARIO Y GENERARLO:
+
+GENÉRALO SI EXISTE UN RIESGO TÉCNICO O DE NEGOCIO RAZONABLE.
+
+PERO:
+
+NO INVENTES ENDPOINTS.
+NO INVENTES CAMPOS.
+NO INVENTES SERVICIOS.
+NO INVENTES TABLAS.
+NO INVENTES CATÁLOGOS.
+NO INVENTES ESTADOS.
+NO INVENTES REGLAS COMO SI FUERAN CONTRACTUALES.
+
+EL OBJETIVO FINAL ES:
+
+"QUE NINGÚN CAMPO, REGLA, DEPENDENCIA, INTEGRACIÓN, ERROR O RIESGO RELEVANTE IDENTIFICABLE EN EL MATERIAL QUEDE SIN UN ESCENARIO DE PRUEBA."
+
+==================================================
+18. CLASIFICACIÓN DE RIESGO Y SUITE OBLIGATORIA
+==================================================
+
+ADEMÁS DE GENERAR LA SUITE COMPLETA, CLASIFICA INTERNAMENTE CADA CASO SEGÚN SU IMPACTO Y RIESGO.
+
+UTILIZA:
+
+CRITICAL / P0
+HIGH / P1
+MEDIUM / P2
+LOW / P3
+
+CRITICAL / P0:
+Casos cuya falla pueda provocar un impacto crítico en el sistema, negocio, seguridad o datos.
+
+Considera CRITICAL cuando aplique:
+
+- Pérdida de dinero.
+- Doble débito.
+- Doble crédito.
+- Doble transferencia.
+- Transferencia a una cuenta incorrecta.
+- Alteración o corrupción de datos.
+- Procesamiento duplicado.
+- Pérdida de una transacción.
+- Error de saldo.
+- Error de estado financiero.
+- Acceso no autorizado a información sensible.
+- Acceso a información de otro cliente.
+- Violación crítica de integridad referencial.
+- Procesamiento de una operación inexistente.
+- Procesamiento de una operación ya completada.
+- Fallo de idempotencia en una operación financiera.
+- Procesamiento incorrecto de eventos críticos.
+- Pérdida de mensajes críticos.
+- Duplicidad de eventos financieros.
+- Procesamiento fuera de orden que genere impacto financiero.
+- Fallos que permitan ejecutar una operación sin autorización.
+- Fallos que puedan comprometer la integridad transaccional.
+
+HIGH / P1:
+Casos cuyo fallo tenga impacto funcional, de integración, seguridad, datos o negocio importante.
+
+Considera HIGH cuando aplique:
+
+- Validaciones críticas de campos.
+- Identificadores inconsistentes.
+- Cuenta inexistente.
+- Producto incorrecto.
+- Cliente incorrecto.
+- Estado inválido.
+- Catálogo incorrecto.
+- Integración entre servicios incorrecta.
+- Fallos de autenticación/autorización.
+- Timeout de servicios dependientes.
+- Retry incorrecto.
+- Problemas de correlación/trazabilidad.
+- Errores de procesamiento asíncrono.
+- Mensajes no procesados.
+- Errores de consumer/producer.
+- Errores de persistencia.
+- Respuestas HTTP incorrectas que afecten el flujo.
+- Errores de contrato.
+- Errores que impidan completar una operación de negocio.
+
+MEDIUM / P2:
+Casos importantes pero cuyo impacto sea controlable y no comprometa directamente una operación crítica.
+
+Ejemplos:
+
+- Validaciones de formato.
+- Longitudes.
+- Valores fuera de catálogo no críticos.
+- Campos opcionales.
+- Errores secundarios.
+- Casos de compatibilidad.
+
+LOW / P3:
+Casos cuyo impacto sea bajo y que no afecten directamente la operación principal, integridad, seguridad o negocio.
+
+==================================================
+19. CRITERIO DE SELECCIÓN CRITICAL + HIGH
+==================================================
+
+DESPUÉS DE GENERAR TODOS LOS CASOS, REALIZA UNA SEGUNDA EVALUACIÓN.
+
+SELECCIONA TODOS LOS CASOS CLASIFICADOS COMO:
+
+CRITICAL / P0
+HIGH / P1
+
+Y CONSIDÉRALOS PARTE DE LA:
+
+"SUITE MÍNIMA OBLIGATORIA"
+
+ESTA SUITE REPRESENTA LOS CASOS QUE DEBEN EJECUTARSE OBLIGATORIAMENTE ANTES DE CONSIDERAR QUE EL FLUJO CRÍTICO DEL SISTEMA HA SIDO VALIDADO.
+
+NO SELECCIONES LOS CASOS ÚNICAMENTE POR SER IMPORTANTES TÉCNICAMENTE.
+
+PRIORIZA LOS QUE PUEDAN DETECTAR:
+
+- Pérdida financiera.
+- Corrupción de información.
+- Duplicidad.
+- Inconsistencia.
+- Fallos de integración.
+- Fallos de seguridad.
+- Operaciones incorrectas.
+- Operaciones no autorizadas.
+- Pérdida de transacciones.
+- Fallos de procesamiento asíncrono.
+- Fallos de idempotencia.
+- Fallos de concurrencia.
+- Fallos de persistencia.
+
+SI EXISTEN MUCHOS CASOS CRITICAL/HIGH, CONSERVA TODOS LOS QUE CUBRAN RIESGOS DIFERENTES.
+
+NO ELIMINES UN CASO CRITICAL/HIGH SOLO PARA REDUCIR LA CANTIDAD.
+
+==================================================
+20. REGLA DE NO DUPLICACIÓN DE LA SUITE OBLIGATORIA
+==================================================
+
+NO CREES CASOS NUEVOS PARA LA SUITE CRITICAL/HIGH.
+
+UTILIZA LOS CASOS YA GENERADOS.
+
+LA SECCIÓN:
+
+"SUITE MÍNIMA OBLIGATORIA — CRITICAL + HIGH"
+
+DEBE SER UNA SELECCIÓN DE LOS CASOS DE LA SUITE COMPLETA.
+
+CADA CASO DEBE CONSERVAR EXACTAMENTE SU REDACCIÓN ORIGINAL.
+
+==================================================
+21. FORMATO DE SALIDA DE PRIORIDADES
+==================================================
+
+PARA CADA CASO DE LA SUITE COMPLETA, AGREGA INTERNAMENTE SU NIVEL DE RIESGO.
+
+FORMATO:
+
+CODIGO_JIRA - Valida que ... — Status Code 200 OK — CRITICAL / P0
+
+CODIGO_JIRA - Valida que ... — Status Code 400 Bad Request — HIGH / P1
+
+CODIGO_JIRA - Valida que ... — Status Code 400 Bad Request — MEDIUM / P2
+
+CODIGO_JIRA - Valida que ... — Status Code 400 Bad Request — LOW / P3
+
+==================================================
+22. FORMATO DE LA SUITE MÍNIMA OBLIGATORIA
+==================================================
+
+AL FINAL DEL ARCHIVO GENERA:
+
+==================================================
+SUITE MÍNIMA OBLIGATORIA — CRITICAL + HIGH
+==================================================
+
+CRITICAL / P0
+
+CODIGO_JIRA - Valida que ... — Status Code XXX — CRITICAL / P0
+
+CODIGO_JIRA - Valida que ... — Status Code XXX — CRITICAL / P0
+
+
+HIGH / P1
+
+CODIGO_JIRA - Valida que ... — Status Code XXX — HIGH / P1
+
+CODIGO_JIRA - Valida que ... — Status Code XXX — HIGH / P1
+
+ESTA SECCIÓN DEBE CONTENER ÚNICAMENTE LOS CASOS QUE DEBEN EJECUTARSE OBLIGATORIAMENTE POR SU NIVEL DE RIESGO.
+
+==================================================
+23. REGLA DE COBERTURA DE LA SUITE OBLIGATORIA
+==================================================
+
+LA SUITE CRITICAL + HIGH DEBE CUBRIR COMO MÍNIMO, CUANDO APLIQUE:
+
+- Happy Path principal.
+- Validación de autorización.
+- Validación de autenticación.
+- Existencia de datos críticos.
+- Integridad de IDs.
+- Integridad de cuenta.
+- Integridad de cliente.
+- Integridad de producto.
+- Integridad de operación.
+- Operación duplicada.
+- Idempotencia.
+- Concurrencia.
+- Persistencia.
+- Integración crítica.
+- Error crítico de dependencia.
+- Timeout crítico.
+- Retry crítico.
+- Evento duplicado.
+- Evento perdido.
+- Evento fuera de orden.
+- Estado inválido.
+- Transacción parcial.
+- Corrupción de datos.
+- Seguridad crítica.
+
+NO ES NECESARIO QUE TODOS LOS ELEMENTOS ANTERIORES EXISTAN EN CADA API.
+
+APLICA ÚNICAMENTE LOS QUE CORRESPONDAN AL MATERIAL ANALIZADO.
+
+==================================================
+24. REGLA ESPECIAL PARA BANCA / FINTECH
+==================================================
+
+SI EL FLUJO INVOLUCRA DINERO, CUENTAS, PAGOS, TRANSFERENCIAS, DÉBITOS, CRÉDITOS O SALDOS:
+
+CONSIDERA CRITICAL/P0, CUANDO APLIQUE:
+
+- Happy Path de la operación financiera.
+- Cuenta origen/destino incorrecta.
+- Cuenta inexistente.
+- Cliente incorrecto.
+- Producto incorrecto.
+- Doble operación.
+- Doble débito.
+- Doble crédito.
+- Doble transferencia.
+- Reintento después de timeout.
+- Idempotencia.
+- Concurrencia.
+- Estado financiero inconsistente.
+- Persistencia incorrecta.
+- Evento duplicado.
+- Evento perdido.
+- Evento fuera de orden con impacto financiero.
+- Operación no autorizada.
+- Alteración del monto.
+- Alteración del identificador de operación.
+
+SI UN CASO NO CUMPLE LOS CRITERIOS ANTERIORES, CLASIFÍCALO COMO HIGH, MEDIUM O LOW SEGÚN CORRESPONDA.
+
+==================================================
+MATERIAL A ANALIZAR
+==================================================
+
+CÓDIGO JIRA BASE:
+[TPU-]
+
+TIPO DE API/ARQUITECTURA:
+[Opcional. Si está vacío, detectarlo automáticamente.]
+
+MATERIAL:
+[PEGAR AQUÍ SWAGGER / OPENAPI / JSON / XML / IMAGEN / REQUEST / RESPONSE / HEADERS / DOCUMENTACIÓN / CONTRATO DE EVENTOS / ETC.]
+
+==================================================
+FIN
+==================================================

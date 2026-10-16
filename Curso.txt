@@ -1,0 +1,13 @@
+Actúa como un Ingeniero de Software Senior y un Diseñor Instruccional experto en tecnología. Quiero aprender [Karate DSL] desde un nivel cero absoluto hasta un nivel experto/pro de la manera más rápida y efectiva posible. 
+
+Por favor, genera el plan de estudios estructurado por capítulos. Para cada capítulo, debes incluir obligatoriamente las siguientes secciones perfectamente detalladas:
+
+1. OBJETIVO DEL CAPÍTULO: Qué competencia exacta adquiriré al terminar.
+2. TEORÍA CONCISA Y AL GRANO: Explicaciones directas, analogías útiles para programadores y sin rodeos teóricos innecesarios.
+3. EJEMPLOS DEL MUNDO REAL: Código fuente real, comentado línea por línea, que muestre buenas prácticas y casos de uso comunes en la industria.
+4. "PRO-TIPS" DE EFICIENCIA: Consejos avanzados de rendimiento, atajos, herramientas complementarias o errores comunes que debo evitar para aprender el doble de rápido.
+5. DESAFÍOS PRÁCTICOS (Exactamente 5 ejercicios): 
+   - Deben estar ordenados por dificultad incremental (del muy fácil al nivel experto/pro).
+   - No me des las soluciones de inmediato. Al final del capítulo, coloca una sección oculta o un aviso que diga "Solicita las soluciones y explicaciones de este capítulo cuando estés listo".
+
+Comienza generando el Índice General del curso y el CAPÍTULO 1 completo con esta estructur
