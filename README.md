@@ -1,6 +1,6 @@
 # Prompts Repository
 
-Este repositorio es mi biblioteca personal de **prompts optimizados** para diferentes modelos de Inteligencia Artificial (como ChatGPT, Claude, Midjourney, entre otros). Aquí organizo y almaceno las instrucciones que mejor resultado me han dado para automatizar tareas, programar, escribir y diseñar.
+Este repositorio es mi biblioteca personal de **prompts optimizados** para diferentes modelos de Inteligencia Artificial (como ChatGPT, Claude, Gemini, entre otros). Aquí organizo y almaceno las instrucciones que mejor resultado me han dado para automatizar tareas, programar, escribir y diseñar.
 
 ---
 ## Cómo Utilizar los Prompts
@@ -19,4 +19,4 @@ Para obtener los mejores resultados al copiar estos prompts, te sugiero seguir e
 * Hacer un **Pull Request** con tus propias optimizaciones.
 ---
 
-📌 *Nota: Este repositorio se actualiza constantemente a medida que descubro y perfecciono nuevas técnicas de Prompt Engineering.*
+📌 *Nota: Este repositorio se actualiza constantemente a medida que descubro y perfecciono nuevas técnicas de Prompt Engineering - Jhovin Bonifacio lozano* 
